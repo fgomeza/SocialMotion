@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prompt_registerUsername">Nombre de usuario</string>
+    <string name="prompt_registerPassword">Contraseña</string>
+    <string name="prompt_registerName">Nombre</string>
+    <string name="prompt_registerFirstName">Apellido</string>
+    <string name="prompt_registerBirth">Fecha de nacimiento</string>
+    <string name="prompt_registerConfirmPassword">Confirmar contraseña</string>
+</resources>

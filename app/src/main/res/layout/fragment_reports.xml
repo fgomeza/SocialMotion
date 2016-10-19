@@ -1,0 +1,167 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moviles.movilesapp.ReportsFragment" >
+
+    <FrameLayout
+        android:id="@+id/camera_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="center"
+            android:text="Reportar mascota perdida"
+            android:layout_alignParentTop = "true"
+            android:paddingBottom="2dp"
+            android:id="@+id/textView2" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameField"
+            android:inputType="textPersonName|textCapWords"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/txtNom"
+            android:layout_toEndOf="@+id/txtNom"
+            android:layout_below="@+id/textView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/nameField"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_below="@id/textView2"
+            android:text="Nombre:"
+            android:id="@+id/txtNom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Descripción:"
+            android:id="@+id/textView"
+            android:layout_below="@+id/nameField"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:id="@+id/msgTxtField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="90dp"
+            android:inputType="textMultiLine|textCapSentences"
+            android:singleLine="false"
+            android:layout_below="@+id/textView"
+            android:layout_alignRight="@+id/imageView3"
+            android:layout_alignEnd="@+id/imageView3" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowRadius="10"
+            android:paddingRight="10dp"
+            android:text="Subir Foto"
+            android:id="@+id/btnUpload"
+            android:layout_below="@+id/msgTxtField"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imageView3"
+            android:background="#d2d2d2"
+            android:layout_gravity="right"
+            android:layout_below="@+id/msgTxtField"
+            android:layout_alignRight="@+id/linearLayout"
+            android:layout_alignEnd="@+id/linearLayout" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linearLayout">
+
+            <Button
+                android:id="@+id/postReportBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:shadowRadius="10"
+                android:text="@string/action_post"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <!--
+            <Button
+                android:id="@+id/randomReportBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:shadowRadius="10"
+                android:text="@string/action_random_post"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/postReportBtn"
+                android:layout_toEndOf="@+id/postReportBtn" />
+
+            <Button
+                android:id="@+id/CamaraBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:shadowRadius="10"
+                android:text="Cámara"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/randomReportBtn"
+                android:layout_toEndOf="@+id/randomReportBtn" />
+                -->
+
+        </LinearLayout>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar ubicación"
+            android:id="@+id/btnMap"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/location"
+            android:layout_above="@id/btnMap"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView3"
+            android:layout_alignEnd="@+id/imageView3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Ubicación:"
+            android:id="@+id/locationlabel"
+            android:layout_above="@+id/location"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "659041271975",
+    "firebase_url": "https://socialmotion-52c54.firebaseio.com",
+    "project_id": "socialmotion-52c54",
+    "storage_bucket": "socialmotion-52c54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659041271975:android:18123c7dd871575e",
+        "android_client_info": {
+          "package_name": "com.globales.socialmotion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659041271975-c7qctnp2s31u3l46h6qehemhm6jsphn3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.globales.socialmotion",
+            "certificate_hash": "A2F4636F9F0153EFEC17544B131390B94AEFBA55"
+          }
+        },
+        {
+          "client_id": "659041271975-9idctmnr3gu45j3l31aou9fh5ql8rpb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwQR5QY9wauRDDbnKNKAGnml4pKmDGvFI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659041271975-9idctmnr3gu45j3l31aou9fh5ql8rpb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
