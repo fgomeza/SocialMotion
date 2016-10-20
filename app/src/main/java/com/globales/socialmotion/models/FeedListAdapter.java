@@ -49,14 +49,6 @@ public class FeedListAdapter extends FirebaseListAdapter<FeedItem> {
         final TextView nameField = (TextView) v.findViewById(R.id.name);
         final TextView msgTxtField = (TextView) v.findViewById(R.id.msgTxt);
         final TextView timestamp = (TextView) v.findViewById(R.id.timestamp);
-        final TextView petNameField = (TextView) v.findViewById(R.id.petName);
-        ImageView image = (ImageView) v.findViewById(R.id.feedImage);
-        TextView address = (TextView) v.findViewById(R.id.address);
-        TextView seEncontro = (TextView) v.findViewById(R.id.seEncontro);
-        Button btn = (Button) v.findViewById(R.id.found);
-
-        seEncontro.setText(model.isFound() ? "Esta mascota ya se encontró" : "Esta mascota no se ha encontrado");
-        btn.setVisibility(model.isFound() ? View.GONE : View.VISIBLE);
 
         CharSequence timeAgo = DateUtils.getRelativeTimeSpanString(
                 model.getTimestamp().equals("")?System.currentTimeMillis():Long.parseLong(model.getTimestamp()),
@@ -65,31 +57,9 @@ public class FeedListAdapter extends FirebaseListAdapter<FeedItem> {
 
         nameField.setText(model.getName());
         msgTxtField.setText(model.getMsgTxt());
-        if (!model.getPetName().trim().equals("")) {
-            petNameField.setText(" - " + model.getPetName());
-        }
         timestamp.setText(timeAgo);
 
-        if (model.getAddress() != null) {
-            address.setText("Cerca de: " + model.getAddress().getAddress() );
-        }
-
-        String imageUrl = model.getImageUrl();
-        if (imageUrl != null && !imageUrl.trim().equals("")) {
-            setImage(image, imageUrl);
-        }
         final FeedItem feedModel = model;
-        Button MiButton = (Button) v.findViewById(R.id.found);
-        MiButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View arg0) {
-                feedModel.setFound(true);
-                String timeStamp = String.valueOf(System.currentTimeMillis());
-                feedModel.setTimestamp(timeStamp);
-                sendFound(feedModel);
-            }
-        });
     }
 
     private void sendFound(final FeedItem item) {

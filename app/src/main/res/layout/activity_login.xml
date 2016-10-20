@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.moviles.movilesapp.LoginActivity">
+    tools:context="com.globales.socialmotion.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -89,14 +89,14 @@
                     android:textStyle="bold" />
 
             </LinearLayout>
-
+<!--
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/pettrackericono" />
-
+-->
         </LinearLayout>
     </ScrollView>
 

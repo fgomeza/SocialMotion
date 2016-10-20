@@ -8,38 +8,20 @@ public class FeedItem {
     private String name;
     private String msgTxt;
     private String timestamp;
-    private String petName;
-    private String imageUrl;
-    private MyAddress address;
-    private boolean found;
     private String id;
-
-    public MyAddress getAddress() {
-        return address;
-    }
-
-    public void setAddress(MyAddress address) {
-        this.address = address;
-    }
 
     public String getName() {
         return name;
     }
 
     public FeedItem() {
-        this("", "", "", "", "", null, false);
+        this("", "", "");
     }
 
-    public FeedItem(String name, String msgTxt, String petName, String timestamp, String imageUrl, MyAddress address, boolean found) {
-
+    public FeedItem(String name, String msgTxt, String timestamp) {
         this.name = name;
         this.msgTxt = msgTxt;
         this.timestamp = timestamp;
-        this.petName = petName;
-        this.imageUrl = imageUrl;
-        this.found = found;
-        this.address = address;
-
     }
 
     public String getId() {
@@ -68,28 +50,6 @@ public class FeedItem {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public String getPetName() { return petName; }
-
-    public void setPetName(String petName) {
-        this.petName = petName;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public boolean isFound() {
-        return found;
-    }
-
-    public void setFound(boolean found) {
-        this.found = found;
     }
 
     public static class MyAddress {

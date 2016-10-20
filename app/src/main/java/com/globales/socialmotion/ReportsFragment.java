@@ -50,10 +50,7 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
     private static final String TAG = ReportsFragment.class.getSimpleName();
     LatLng latLng = null;
 
-    private ImageView mSelectedImage;
-    EditText msgTxtField;
-    EditText nameField;
-    TextView locationField;
+    EditText txtField;
     Address address;
     FeedItem.MyAddress myAddress;
 
@@ -87,10 +84,7 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reports, container, false);
 
-        mSelectedImage = (ImageView)view.findViewById(R.id.imageView3);
-        msgTxtField = (EditText) view.findViewById(R.id.msgTxtField);
-        nameField = (EditText) view.findViewById(R.id.nameField);
-        locationField = (TextView) view.findViewById(R.id.location);
+        txtField = (EditText) view.findViewById(R.id.txtField);
         return view;
     }
 
@@ -103,17 +97,8 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.postReportBtn:
-                sendReport();
-                break;
-            case R.id.btnUpload:
-                uploadPicture();
-                break;
-            case R.id.btnMap:
-                Intent i = new Intent(getActivity(), MapLocation.class);
-                startActivityForResult(i,2);
-                break;
+        if (v.getId() == R.id.postReportBtn) {
+            sendReport();
         }
     }
 
@@ -126,7 +111,7 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
     }
 
 
-
+    /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_LOAD_IMG  && resultCode == Activity.RESULT_OK) {
@@ -160,6 +145,7 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
         }
         hideBtn();
     }
+    */
 
     public static Bitmap getBitmapFromIntentData(Intent data, Context context) throws IOException {
         /*
@@ -179,31 +165,19 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
     private void bindButton() {
         final Activity activity = getActivity();
         activity.findViewById(R.id.postReportBtn).setOnClickListener(this);
-        activity.findViewById(R.id.btnUpload).setOnClickListener(this);
-        activity.findViewById(R.id.btnMap).setOnClickListener(this);
-
     }
 
-    private void hideBtn(){
-        Button btn = (Button) getActivity().findViewById(R.id.btnMap);
-        if(locationField.getText().toString() !=  "") {
-            btn.setVisibility(View.INVISIBLE);
-        }
-    }
 
 
     private void sendReport() {
         if(validateForm()) {
-            String msgTxt = msgTxtField.getText().toString();
-            String name = nameField.getText().toString();
-            String addressField = locationField.getText().toString();
+            String msgTxt = txtField.getText().toString();
 
-
-          sendReport(msgTxt, name, address);
+          sendReport(msgTxt);
         }
     }
 
-    private void sendReport(final String msgTxt, final String petName, final Address ad) {
+    private void sendReport(final String msgTxt) {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         dbRef.child(Constants.DB_USERS_NODE).child(uid).addListenerForSingleValueEvent(
@@ -214,14 +188,7 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
                         String name = user.getFirstName() + " " + user.getLastName();
                         String timeStamp = String.valueOf(System.currentTimeMillis());
 
-                        // imagen
-                        byte[] imageBytes = getSelectedImageBytes();
-                        String imageUrl = null;
-                        if (imageBytes != null) {
-                            imageUrl = saveImageToFirebase(imageBytes);
-                        }
-
-                        FeedItem item = new FeedItem(name, msgTxt, petName, timeStamp, imageUrl, myAddress, false);
+                        FeedItem item = new FeedItem(name, msgTxt, timeStamp);
                         DatabaseReference newItem = dbRef.child(Constants.DB_FEED_NODE).push();
                         item.setId(newItem.getKey());
 
@@ -238,6 +205,7 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
         );
     }
 
+    /*
     private byte[] getSelectedImageBytes() {
         if(mSelectedImage.getDrawable() == null) {
             return null;
@@ -249,7 +217,9 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         return baos.toByteArray();
     }
+    */
 
+    /*
     private String saveImageToFirebase(byte[] imageBytes) {
         String imageUrl = UUID.nameUUIDFromBytes(imageBytes).toString();
         FirebaseStorage.getInstance()
@@ -259,16 +229,19 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
                 .putBytes(imageBytes);
         return imageUrl;
     }
+    */
 
     private boolean validateForm() {
         return true;
     }
 
+    /*
     private void sendRandomReport() {
         String randomMessage = new BigInteger(130, new SecureRandom()).toString(32);
         String randomName = new BigInteger(130, new SecureRandom()).toString(16);
         //sendReport(randomMessage, randomName);
         Toast.makeText(getActivity(), "Random report sent", Toast.LENGTH_SHORT).show();
     }
+    */
 
 }

@@ -79,8 +79,6 @@ public class MapsFragment extends BaseFragment implements OnMapReadyCallback {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 itemValue = dataSnapshot.getValue(FeedItem.class);
-                LatLng latLng = new LatLng(itemValue.getAddress().getLat(), itemValue.getAddress().getLng());
-                mMap.addMarker(new MarkerOptions().position(latLng).title(itemValue.getPetName()));
             }
 
             @Override

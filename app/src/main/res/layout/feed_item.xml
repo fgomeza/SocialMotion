@@ -15,19 +15,11 @@
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/feed_item_profile_name"
                 android:layout_alignParentTop="true"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/petName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/feed_item_profile_name"
-                android:textStyle="italic"
-                android:layout_toRightOf="@id/name"/>
 
             <TextView
                 android:id="@+id/timestamp"
@@ -35,49 +27,15 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/timestamp"
                 android:textSize="@dimen/feed_item_timestamp"
-                android:layout_below="@id/name"
-                />
-
-            <ImageView
-                android:id="@+id/feedImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/timestamp"
-                android:layout_marginTop="@dimen/feed_item_status_margin_top_bottom"
-                android:layout_marginBottom="@dimen/feed_item_status_margin_top_bottom"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:background="#000"/>
+                android:layout_below="@id/name" />
 
             <TextView
                 android:id="@+id/msgTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/feedImage"
+                android:layout_below="@id/timestamp"
                 android:layout_marginBottom="@dimen/feed_item_status_margin_top_bottom"
-                android:layout_marginTop="@dimen/feed_item_status_margin_top_bottom"/>
-
-            <TextView
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/msgTxt"
-                android:layout_marginBottom="@dimen/feed_item_status_margin_top_bottom"
-                android:layout_marginTop="@dimen/feed_item_status_margin_top_bottom"/>
-            <TextView
-                android:id="@+id/seEncontro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/address"
-                android:layout_marginBottom="@dimen/feed_item_status_margin_top_bottom"
-                android:layout_marginTop="@dimen/feed_item_status_margin_top_bottom"
-                android:textColor="@color/colorPrimary"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/seEncontro"
-                android:id="@+id/found"
-                android:text="@string/found"/>
+                android:layout_marginTop="@dimen/feed_item_status_margin_top_bottom" />
 
         </RelativeLayout>
 
