@@ -13,29 +13,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.globales.socialmotion.models.Constants;
 import com.globales.socialmotion.models.FeedItem;
-import com.globales.socialmotion.models.User;
+import com.globales.socialmotion.models.FirebaseHelper;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.UUID;
 
 
 /**
@@ -98,7 +82,7 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.postReportBtn) {
-            sendReport();
+            postMessage();
         }
     }
 
@@ -168,41 +152,12 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
     }
 
 
-
-    private void sendReport() {
+    private void postMessage() {
         if(validateForm()) {
             String msgTxt = txtField.getText().toString();
-
-          sendReport(msgTxt);
+            new FirebaseHelper(getActivity()).postMessage(msgTxt);
+            txtField.setText("");
         }
-    }
-
-    private void sendReport(final String msgTxt) {
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child(Constants.DB_USERS_NODE).child(uid).addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = dataSnapshot.getValue(User.class);
-                        String name = user.getFirstName() + " " + user.getLastName();
-                        String timeStamp = String.valueOf(System.currentTimeMillis());
-
-                        FeedItem item = new FeedItem(name, msgTxt, timeStamp);
-                        DatabaseReference newItem = dbRef.child(Constants.DB_FEED_NODE).push();
-                        item.setId(newItem.getKey());
-
-                        newItem.setValue(item);
-                        Toast.makeText(getActivity(), "Su reporte ha sido enviado", Toast.LENGTH_LONG).show();
-                        getActivity().onBackPressed();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
     }
 
     /*
@@ -239,7 +194,7 @@ public class ReportsFragment extends BaseFragment implements View.OnClickListene
     private void sendRandomReport() {
         String randomMessage = new BigInteger(130, new SecureRandom()).toString(32);
         String randomName = new BigInteger(130, new SecureRandom()).toString(16);
-        //sendReport(randomMessage, randomName);
+        //postMessage(randomMessage, randomName);
         Toast.makeText(getActivity(), "Random report sent", Toast.LENGTH_SHORT).show();
     }
     */

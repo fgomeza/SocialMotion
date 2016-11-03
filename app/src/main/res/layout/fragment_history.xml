@@ -1,0 +1,18 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.globales.socialmotion.HistoryFragment">
+
+    <ListView
+        android:id="@+id/feedList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/feed_bg"
+        android:divider="@null"
+        android:scrollbarStyle="outsideOverlay"
+        android:dividerHeight="@dimen/feed_item_padding"
+        android:padding="@dimen/feed_item_padding"
+        android:layout_below="@id/postText"/>
+
+</FrameLayout>

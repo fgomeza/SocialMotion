@@ -28,7 +28,6 @@ import com.google.firebase.storage.StorageReference;
 public class FeedListAdapter extends FirebaseListAdapter<FeedItem> {
 
     private final FirebaseStorage storage;
-    Activity act;
 
     /**
      * @param activity    The activity containing the ListView
@@ -37,10 +36,10 @@ public class FeedListAdapter extends FirebaseListAdapter<FeedItem> {
         super(FirebaseDatabase.getInstance().getReference().child(Constants.DB_FEED_NODE),
                 FeedItem.class,
                 R.layout.feed_item,
-                activity);
+                activity,
+                true);
 
         storage = FirebaseStorage.getInstance();
-        act = activity;
     }
 
     @Override
@@ -58,8 +57,6 @@ public class FeedListAdapter extends FirebaseListAdapter<FeedItem> {
         nameField.setText(model.getName());
         msgTxtField.setText(model.getMsgTxt());
         timestamp.setText(timeAgo);
-
-        final FeedItem feedModel = model;
     }
 
     private void sendFound(final FeedItem item) {

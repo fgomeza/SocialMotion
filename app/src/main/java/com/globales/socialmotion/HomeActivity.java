@@ -9,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -84,8 +83,10 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             super.onBackPressed();
+        } else {
+            getSupportFragmentManager().popBackStack();
         }
     }
 
@@ -125,30 +126,40 @@ public class HomeActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.drawer_map:
-                fragment = new MapsFragment();
+                switchToFragment(new MapsFragment());
                 break;
             case R.id.drawer_report:
-                fragment = new ReportsFragment();
+                switchToFragment(new ReportsFragment());
+                break;
+            case R.id.drawer_history:
+                switchToFragment(new HistoryFragment());
                 break;
             case R.id.drawer_feed:
             default:
-                fragment = new FeedFragment();
+                switchToFragment(new FeedFragment());
         }
 
         drawer.closeDrawer(GravityCompat.START);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                .commit();
 
         item.setChecked(true);
         setTitle(item.getTitle());
         return true;
     }
 
+    public void switchToFragment() {
+        switchToFragment(new FeedFragment());
+    }
+
+    public void switchToFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
+    }
+
     @Override
     public void onFragmentInteraction() {
     }
+
 
 }

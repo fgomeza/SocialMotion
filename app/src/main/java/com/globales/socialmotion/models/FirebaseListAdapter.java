@@ -27,6 +27,7 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
     private List<T> mModels;
     private List<String> mKeys;
     private ChildEventListener mListener;
+    private boolean reverse;
 
 
     /**
@@ -37,13 +38,14 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
      *                    instance of the corresponding view with the data from an instance of mModelClass.
      * @param activity    The activity containing the ListView
      */
-    public FirebaseListAdapter(Query mRef, Class<T> mModelClass, int mLayout, Activity activity) {
+    public FirebaseListAdapter(Query mRef, Class<T> mModelClass, int mLayout, Activity activity, boolean reverse) {
         this.mRef = mRef;
         this.mModelClass = mModelClass;
         this.mLayout = mLayout;
         mInflater = activity.getLayoutInflater();
         mModels = new ArrayList<T>();
         mKeys = new ArrayList<String>();
+        this.reverse = reverse;
         // Look for all child events. We will then map them to our own internal ArrayList, which backs ListView
         mListener = this.mRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -130,6 +132,18 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
         });
     }
 
+    /**
+     * @param mRef        The Firebase location to watch for data changes. Can also be a slice of a location, using some
+     *                    combination of <code>limit()</code>, <code>startAt()</code>, and <code>endAt()</code>,
+     * @param mModelClass Firebase will marshall the data at a location into an instance of a class that you provide
+     * @param mLayout     This is the mLayout used to represent a single list item. You will be responsible for populating an
+     *                    instance of the corresponding view with the data from an instance of mModelClass.
+     * @param activity    The activity containing the ListView
+     */
+    public FirebaseListAdapter(Query mRef, Class<T> mModelClass, int mLayout, Activity activity) {
+        this(mRef, mModelClass, mLayout, activity, false);
+    }
+
     public void cleanup() {
         // We're being destroyed, let go of our mListener and forget about all of the mModels
         mRef.removeEventListener(mListener);
@@ -144,12 +158,12 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return mModels.get(i);
+        return mModels.get(getIndex(i));
     }
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return getIndex(i);
     }
 
     @Override
@@ -158,10 +172,14 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
             view = mInflater.inflate(mLayout, viewGroup, false);
         }
 
-        T model = mModels.get(i);
+        T model = mModels.get(getIndex(i));
         // Call out to subclass to marshall this model into the provided view
         populateView(view, model);
         return view;
+    }
+
+    private int getIndex(int i) {
+        return reverse ? getCount() - 1 - i : i;
     }
 
     /**

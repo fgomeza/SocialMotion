@@ -14,6 +14,7 @@ import android.widget.EditText;
 import com.globales.socialmotion.models.OnFragmentInteractionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -21,7 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
-public class MapLocation extends FragmentActivity implements OnFragmentInteractionListener {
+public class MapLocation extends FragmentActivity implements OnFragmentInteractionListener, OnMapReadyCallback {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     String finalLocation;
@@ -103,11 +104,8 @@ public class MapLocation extends FragmentActivity implements OnFragmentInteracti
 
     private void setUpMapIfNeeded() {
         if (mMap == null) {
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            if (mMap != null) {
-                setUpMap();
-            }
+            ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                    .getMapAsync(this);
         }
     }
 
@@ -125,5 +123,13 @@ public class MapLocation extends FragmentActivity implements OnFragmentInteracti
     @Override
     public void onFragmentInteraction() {
 
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        if (mMap != null) {
+            setUpMap();
+        }
     }
 }

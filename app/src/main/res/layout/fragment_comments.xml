@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.globales.socialmotion.CommentsFragment">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/feed_bg" >
+
+            <include
+                layout="@layout/feed_item"
+                android:id="@+id/parentComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postText"
+                android:inputType="textMultiLine|textCapSentences"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_below="@id/parentComment" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonPost"
+                android:text="Publicar"
+                android:layout_alignTop="@id/postText"
+                android:layout_toRightOf="@id/postText"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <ListView
+                android:id="@+id/commentsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:dividerHeight="@dimen/feed_item_padding"
+                android:padding="@dimen/feed_item_padding"
+                android:layout_below="@id/postText" />
+
+
+        </RelativeLayout>
+
+
+</FrameLayout>
+

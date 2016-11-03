@@ -5,9 +5,11 @@ package com.globales.socialmotion.models;
  */
 public class Constants {
 
-    public final static String DB_FEED_NODE = "feed";
-    public final static String DB_USERS_NODE = "users";
-    public final static String STORAGE_IMAGES = "posts_images";
-    public final static long ONE_MEGABYTE = 1024 * 1024;
+    public static final String DB_FEED_NODE = "feed";
+    public static final String DB_COMMENTS_NODE = "comments";
+    public static final String DB_USERS_NODE = "users";
+    public static final String STORAGE_IMAGES = "posts_images";
+    public static final String DB_USER_POSTS_NODE = "users-posts";
+    public static final long ONE_MEGABYTE = 1024 * 1024;
 
 }

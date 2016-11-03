@@ -10,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.globales.socialmotion.models.OnFragmentInteractionListener;
+
+import java.io.Serializable;
 
 
 /**
@@ -26,8 +29,8 @@ public abstract class BaseFragment extends Fragment {
     public static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    protected String mParam1;
-    protected String mParam2;
+    protected Serializable mParam1;
+    protected Serializable mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,8 +51,8 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getSerializable(ARG_PARAM1);
+            mParam2 = getArguments().getSerializable(ARG_PARAM2);
         }
     }
 
@@ -65,5 +68,7 @@ public abstract class BaseFragment extends Fragment {
             mListener.onFragmentInteraction();
         }
     }
+
+
 
 }

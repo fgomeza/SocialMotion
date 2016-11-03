@@ -1,9 +1,11 @@
 package com.globales.socialmotion.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Francisco on 23-May-16.
  */
-public class FeedItem {
+public class FeedItem implements Serializable {
 
     private String name;
     private String msgTxt;
